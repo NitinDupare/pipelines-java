@@ -16,7 +16,7 @@ strategy:
       jdkVersion: "1.11"
   maxParallel: 2
 
-  pool:
+pool:
   vmImage: $(imageName)
 
 steps:
