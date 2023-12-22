@@ -6,19 +6,15 @@
 trigger:
 - main
 
+pool: 
+  vmImage: 'ubuntu-latest'
+
 jobs:
-- job: myJob
-  timeoutInMinutes: 10
-  pool: 
-    vmImage: 'ubuntu-latest'
+- job: Debug
   steps:
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.8'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'
+  - script: echo hello from the Debug build
+- job: Release
+  dependsOn: Debug
+  steps:
+  - script: echo hello from the Release build
+
