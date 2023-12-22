@@ -6,7 +6,6 @@
 trigger:
 - main
 
-
 jobs:
 - job: myJob
   timeoutInMinutes: 10
@@ -14,7 +13,7 @@ jobs:
     vmImage: 'ubuntu-latest'
   steps:
     - task: Maven@3
-       inputs:
+      inputs:
         mavenPomFile: 'pom.xml'
         mavenOptions: '-Xmx3072m'
         javaHomeOption: 'JDKVersion'
