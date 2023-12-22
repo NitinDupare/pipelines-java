@@ -6,15 +6,20 @@
 trigger:
 - main
 
-pool: 
-  vmImage: 'ubuntu-latest'
 
 jobs:
-- job: Debug
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
   steps:
-  - script: echo hello from the Debug build
-- job: Release
-  dependsOn: Debug
+  - script: echo hello from Windows
+- job: macOS
+  pool:
+    vmImage: 'macOS-latest'
   steps:
-  - script: echo hello from the Release build
-
+  - script: echo hello from macOS
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: echo hello from Linux
