@@ -6,20 +6,17 @@
 trigger:
 - main
 
-
+pool:
+  vmImage: 'ubuntu-latest'
 jobs:
-- job: Windows
-  pool:
-    vmImage: 'windows-latest'
+- job: InitialJob
   steps:
-  - script: echo hello from Windows
-- job: macOS
-  pool:
-    vmImage: 'macOS-latest'
+  - script: echo hello from initial job
+- job: SubsequentA
+  dependsOn: InitialJob
   steps:
-  - script: echo hello from macOS
-- job: Linux
-  pool:
-    vmImage: 'ubuntu-latest'
+  - script: echo hello from subsequent A
+- job: SubsequentB
+  dependsOn: InitialJob
   steps:
-  - script: echo hello from Linux
+  - script: echo hello from subsequent B
