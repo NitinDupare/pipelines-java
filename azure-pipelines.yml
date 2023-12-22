@@ -8,14 +8,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
 jobs:
-- job: A
-  steps:
-  - script: echo hello
-
-- job: B
-  dependsOn: A
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
-  steps:
-  - script: echo this only runs for master
+- job: Test
+  timeoutInMinutes: 10 # how long to run the job before automatically cancelling
+  cancelTimeoutInMinutes: 2 # how much time to give 'run always even if cancelled tasks' before stopping them
