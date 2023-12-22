@@ -9,8 +9,8 @@ trigger:
 jobs:
 - job: myJob
   timeoutInMinutes: 10
-  pool: server
-#    vmImage: 'ubuntu-latest'
+  pool: 
+    vmImage: 'ubuntu-latest'
   steps:
     - task: Maven@3
       inputs:
