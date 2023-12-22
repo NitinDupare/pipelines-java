@@ -10,15 +10,20 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-- job: InitialA
+- job: A
   steps:
-  - script: echo hello from initial A
-- job: InitialB
+  - script: exit 1
+
+- job: B
+  dependsOn: A
+  condition: failed()
   steps:
-  - script: echo hello from initial B
-- job: Subsequent
+  - script: echo this will run when A fails
+
+- job: C
   dependsOn:
-  - InitialA
-  - InitialB
+  - A
+  - B
+  condition: succeeded('B')
   steps:
-  - script: echo hello from subsequent
+  - script: echo this will run when B runs and succeeds
