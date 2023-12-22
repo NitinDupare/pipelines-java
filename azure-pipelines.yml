@@ -8,15 +8,17 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+
 jobs:
-- job: InitialJob
+- job: InitialA
   steps:
-  - script: echo hello from initial job
-- job: SubsequentA
-  dependsOn: InitialJob
+  - script: echo hello from initial A
+- job: InitialB
   steps:
-  - script: echo hello from subsequent A
-- job: SubsequentB
-  dependsOn: InitialJob
+  - script: echo hello from initial B
+- job: Subsequent
+  dependsOn:
+  - InitialA
+  - InitialB
   steps:
-  - script: echo hello from subsequent B
+  - script: echo hello from subsequent
